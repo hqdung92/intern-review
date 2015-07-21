@@ -3,7 +3,7 @@
     android:layout_height="70dp"
     android:descendantFocusability="blocksDescendants">
 
-    <com.example.contacts.widget.CircleImageView
+    <intership.dev.contact.widget.CircleImageView
         android:id="@+id/img_avata"
         android:layout_width="50dp"
         android:layout_height="50dp"
