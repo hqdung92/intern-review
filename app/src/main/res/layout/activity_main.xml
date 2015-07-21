@@ -1,12 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/rl_contacts"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#00bbd2">
+        android:layout_height="@dimen/activity.layout_height"
+        android:background="@color/layout.background.activity_main">
 
         <ImageView
             android:id="@+id/img_back"
@@ -22,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Contacts"
-            android:textColor="#fff"
-            android:textSize="24sp" />
+            android:text="@string/textview.text.contacts"
+            android:textColor="@color/textview.textcolor"
+            android:textSize="@dimen/textview.textsize.contacts" />
     </RelativeLayout>
 
     <ListView

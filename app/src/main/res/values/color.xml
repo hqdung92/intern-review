@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="layout.background.item_list_contacts">#ffffff</color>
+    <color name="button.background.item_list_contacts">#00ffff</color>
+    <color name="layout.background.activity_main">#00bbd2</color>
+    <color name="textview.textcolor">#ffffff</color>
+
+</resources>
