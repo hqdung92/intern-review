@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rl_contacts"
+        android:id="@+id/rlContact"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity.layout_height"
         android:background="@color/layout.background.activity_main">
 
         <ImageView
-            android:id="@+id/img_back"
+            android:id="@+id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -19,7 +19,7 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:id="@+id/tv_contacts"
+            android:id="@+id/tvContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -29,9 +29,9 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/lv_contacts"
+        android:id="@+id/lvContact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_contacts" />
+        android:layout_below="@+id/rlContact" />
 
 </RelativeLayout>
