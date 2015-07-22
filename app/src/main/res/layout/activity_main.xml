@@ -28,10 +28,15 @@
             android:textSize="@dimen/textview.textsize.contacts" />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/lvContact"
+    <RelativeLayout
+        android:id="@+id/rlContactFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlContact" />
+        android:layout_below="@+id/rlContact">
 
+        <ListView
+            android:id="@+id/lvContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package intership.dev.contact;
 
-public class Contacts {
+import java.io.Serializable;
+
+public class Contacts implements Serializable{
     private String mName;
     private int mAvata;
 

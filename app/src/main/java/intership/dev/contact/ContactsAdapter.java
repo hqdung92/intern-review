@@ -1,6 +1,7 @@
 package intership.dev.contact;
 
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -15,6 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<Contacts> {
+
+    public interface OnClickContacts {
+        void onClickEdit(int position);
+    }
+
+    OnClickContacts mOnClickContacts;
     Context mContext;
     ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
 
@@ -71,6 +78,15 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         mViewHolder.tvName.setText(contact.getmName());
         mViewHolder.imgAvata.setImageResource(contact.getmAvata());
 
+        mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnClickContacts != null) {
+                    mOnClickContacts.onClickEdit(position);
+                }
+            }
+        });
+
         mViewHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +119,10 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         });
 
         return convertView;
+    }
+
+    public void setOnClickContacts(OnClickContacts onClickContacts) {
+        mOnClickContacts = onClickContacts;
     }
 
     static class ViewHolder {
