@@ -4,6 +4,11 @@ public class Contacts {
     private String mName;
     private int mAvata;
 
+    public Contacts(String mName, int mAvata) {
+        this.mName = mName;
+        this.mAvata = mAvata;
+    }
+
     public String getmName() {
         return mName;
     }

@@ -43,8 +43,8 @@ public class MainActivity extends Activity {
     }
 
     private void getDataContacts() {
-        for (int i = 0; i < 20; i++) {
-            Contacts contact = new Contacts();
+        for (int i = 0; i < name.length; i++) {
+            Contacts contact = new Contacts(name[i],avata[i]);
             contact.setmName(name[i]);
             contact.setmAvata(avata[i]);
             mArrayList.add(contact);
