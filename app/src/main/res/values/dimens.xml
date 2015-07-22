@@ -7,4 +7,7 @@
     <dimen name="textview.textsize.contacts">24sp</dimen>
     <dimen name="dialog.layout_height">250dp</dimen>
     <dimen name="dialog.button.layout_height">40dp</dimen>
+    <dimen name="textview.textsize.dialog">16sp</dimen>
+    <dimen name="textview.textsize.fragment">16sp</dimen>
+    <dimen name="textview.textsize.fragment.name">20sp</dimen>
 </resources>

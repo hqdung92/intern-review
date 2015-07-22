@@ -10,4 +10,5 @@
     <string name="textview.text.loading">Loading</string>
     <string name="textview.text.cancel">Cancel</string>
     <string name="textview.text.ok">OK</string>
+    <string name="textview.text.save">Save</string>
 </resources>

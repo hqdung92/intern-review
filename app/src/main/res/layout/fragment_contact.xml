@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/rlContact"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00bbd2">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Contacts"
+            android:textColor="#fff"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlAvata"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/rlContact">
+
+        <intership.dev.contact.widget.CircleImageView
+            android:id="@+id/imgAvata"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/bg_avata" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@+id/imgAvata"
+            android:text="Name"
+            android:textColor="@color/textview.textcolor.name"
+            android:textSize="@dimen/textview.textsize.fragment.name" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/rlAvata"
+        android:background="@color/view.background" />
+
+    <RelativeLayout
+        android:id="@+id/rlName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/rlAvata"
+        android:layout_marginTop="20dp"
+        android:background="#f9f9f9">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/view.background" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#00ffffff"
+            android:paddingLeft="20dp"
+            android:text="Name"
+            android:textColor="@color/textview.textcolor.fragment" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/rlName"
+        android:background="@color/view.background" />
+
+    <RelativeLayout
+        android:id="@+id/rlInfor"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@+id/rlName"
+        android:layout_marginTop="30dp"
+        android:background="#f9f9f9">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/view.background" />
+
+        <EditText
+            android:id="@+id/edtInfor"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="#00ffffff"
+            android:gravity="top"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:text="Infor"
+            android:textColor="@color/textview.textcolor.fragment" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/rlInfor"
+        android:background="@color/view.background" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_above="@+id/llButton"
+        android:background="@color/view.background" />
+
+    <LinearLayout
+        android:id="@+id/llButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tvSave"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/textview.text.save"
+            android:textSize="@dimen/textview.textsize.fragment" />
+
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/view.background" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/textview.text.cancel"
+            android:textSize="@dimen/textview.textsize.fragment" />
+    </LinearLayout>
+</RelativeLayout>

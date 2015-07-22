@@ -43,6 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textSize="@dimen/textview.textsize.dialog"
                 android:text="@string/textview.text.ok"
                 android:textColor="@color/textview.textcolor.dialog" />
 
@@ -57,6 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textSize="@dimen/textview.textsize.dialog"
                 android:text="@string/textview.text.cancel"
                 android:textColor="@color/textview.textcolor.dialog" />
         </LinearLayout>
