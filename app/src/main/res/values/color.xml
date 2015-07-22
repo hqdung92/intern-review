@@ -4,5 +4,7 @@
     <color name="button.background.item_list_contacts">#00ffff</color>
     <color name="layout.background.activity_main">#00bbd2</color>
     <color name="textview.textcolor">#ffffff</color>
+    <color name="view.background">#d3d6db</color>
+    <color name="textview.textcolor.dialog">#007aff</color>
 
 </resources>

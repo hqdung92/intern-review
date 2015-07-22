@@ -50,10 +50,14 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
 
             mViewHolder = new ViewHolder();
 
-            mViewHolder.img_avata = (ImageView) convertView
-                    .findViewById(R.id.img_avata);
+            mViewHolder.imgAvata = (ImageView) convertView
+                    .findViewById(R.id.imgAvata);
 
-            mViewHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+            mViewHolder.tvName = (TextView) convertView.findViewById(R.id.tvName);
+
+            mViewHolder.imgEdit = (ImageView) convertView.findViewById(R.id.imgEdit);
+
+            mViewHolder.imgDelete = (ImageView) convertView.findViewById(R.id.imgDelete);
 
             convertView.setTag(mViewHolder);
         } else {
@@ -61,14 +65,14 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
         Contacts contact = mList.get(position);
-        mViewHolder.tv_name.setText(contact.getmName());
-        mViewHolder.img_avata.setImageResource(contact.getmAvata());
+        mViewHolder.tvName.setText(contact.getmName());
+        mViewHolder.imgAvata.setImageResource(contact.getmAvata());
 
         return convertView;
     }
 
     static class ViewHolder {
-        TextView tv_name;
-        ImageView img_avata;
+        TextView tvName;
+        ImageView imgAvata, imgEdit, imgDelete;
     }
 }

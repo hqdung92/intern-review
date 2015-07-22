@@ -9,8 +9,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
-    ListView mList;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
+    private ListView mList;
+    private ContactsAdapter mContactsAdapter;
 
     String[] name = new String[]{
             "Title 1", "Title 2", "Title 3", "Title 4",
@@ -33,11 +35,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         getDataContacts();
 
-        mList = (ListView) findViewById(R.id.lv_contacts);
+        mList = (ListView) findViewById(R.id.lvContact);
 
-        ContactsAdapter adapter = new ContactsAdapter(this, R.layout.item_list_contacts, mArrayList);
+        mContactsAdapter = new ContactsAdapter(this, R.layout.item_list_contacts, mArrayList);
 
-        mList.setAdapter(adapter);
+        mList.setAdapter(mContactsAdapter);
     }
 
     private void getDataContacts() {
