@@ -1,69 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00ffffff"
-    android:gravity="center">
+    android:layout_height="@dimen/dialog.layout_height"
+    android:layout_margin="20dp"
+    android:background="@drawable/bg_dialog">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dialog.layout_height"
-        android:layout_margin="50dp"
-        android:background="@drawable/bg_dialog">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llButton">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/llButton">
-
-            <TextView
-                android:id="@+id/tvMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:maxWidth="150dp"
-                android:textSize="@dimen/textview.textsize.dialog"
-                android:text="Are you sure" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_above="@+id/llButton"
-            android:background="@color/view.background" />
-
-        <LinearLayout
-            android:id="@+id/llButton"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dialog.button.layout_height"
-            android:layout_alignParentBottom="true"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/tvOk"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/textview.textsize.dialog"
-                android:text="@string/textview.text.ok"
-                android:textColor="@color/textview.textcolor.dialog" />
-
-            <View
-                android:layout_width="0.2dp"
-                android:layout_height="match_parent"
-                android:background="@color/view.background" />
-
-            <TextView
-                android:id="@+id/tvCancel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/textview.textsize.dialog"
-                android:text="@string/textview.text.cancel"
-                android:textColor="@color/textview.textcolor.dialog" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxWidth="180dp"
+            android:text="Are you sure"
+            android:textSize="@dimen/textview.textsize.dialog" />
     </RelativeLayout>
 
-</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_above="@+id/llButton"
+        android:background="@color/view.background" />
+
+    <LinearLayout
+        android:id="@+id/llButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog.button.layout_height"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tvOk"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/textview.text.ok"
+            android:textColor="@color/textview.textcolor.dialog"
+            android:textSize="@dimen/textview.textsize.dialog" />
+
+        <View
+            android:layout_width="0.2dp"
+            android:layout_height="match_parent"
+            android:background="@color/view.background" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/textview.text.cancel"
+            android:textColor="@color/textview.textcolor.dialog"
+            android:textSize="@dimen/textview.textsize.dialog" />
+    </LinearLayout>
+</RelativeLayout>

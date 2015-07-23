@@ -2,6 +2,7 @@ package intership.dev.contact;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.AbsListView;
@@ -24,6 +25,11 @@ public class MainActivity extends Activity {
             "Title 13", "Title 14", "Title 15", "Title 16",
             "Title 17", "Title 18", "Title 19", "Title 20"
     };
+    String[] decription = new String[]{"Title 11", "Title 22", "Title 33", "Title 44",
+            "Title 55", "Title 66", "Title 77", "Title 88",
+            "Title 99", "Title 100", "Title 111", "Title 122",
+            "Title 133", "Title 144", "Title 155", "Title 166",
+            "Title 177", "Title 188", "Title 199", "Title 200"};
     int[] avata = new int[]{
             R.drawable.img_avata1, R.drawable.img_avata2, R.drawable.img_avata3, R.drawable.img_avata1,
             R.drawable.img_avata2, R.drawable.img_avata3, R.drawable.img_avata1, R.drawable.img_avata2,
@@ -63,9 +69,10 @@ public class MainActivity extends Activity {
     }
 
     private void getDataContacts() {
-        for (int i = 0; i < 10; i++) {
-            Contacts contact = new Contacts(name[i], avata[i]);
+        for (int i = 0; i < name.length; i++) {
+            Contacts contact = new Contacts(name[i], decription[i], avata[i]);
             contact.setmName(name[i]);
+            contact.setmDecription(decription[i]);
             contact.setmAvata(avata[i]);
             mArrayList.add(contact);
         }
@@ -94,6 +101,17 @@ public class MainActivity extends Activity {
         protected void onPostExecute(ArrayList<Contacts> contact) {
             super.onPostExecute(contact);
             mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            Contacts contact = (Contacts) data.getSerializableExtra(ContactFragment.EXTRA_CONTACT);
+            int position = data.getIntExtra("position", -1);
+            mArrayList.set(position, contact);
+            mContactsAdapter.notifyDataSetChanged();
         }
     }
 }

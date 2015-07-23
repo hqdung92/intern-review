@@ -76,28 +76,27 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         final Contacts contact = mArrayList.get(position);
         mViewHolder.tvName.setText(contact.getmName());
         mViewHolder.imgAvata.setImageResource(contact.getmAvata());
-
         mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ContactFragment mEditContactFragment = new ContactFragment();
+                ContactFragment mContactFragment = new ContactFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(ContactFragment.EXTRA_CONTACT, mArrayList.get(position));
-                mEditContactFragment.setArguments(bundle);
+                mContactFragment.setArguments(bundle);
 
                 FragmentManager mFragmentManager = ((Activity) mContext).getFragmentManager();
-                FragmentTransaction FragmentTransaction = mFragmentManager.beginTransaction();
-                FragmentTransaction.replace(R.id.rlContactFragment, mEditContactFragment);
-                FragmentTransaction.addToBackStack(null);
-                FragmentTransaction.commit();
+                FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+                mFragmentTransaction.replace(R.id.rlContactFragment, mContactFragment);
+                mFragmentTransaction.addToBackStack(null);
+                mFragmentTransaction.commit();
             }
         });
 
         mViewHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog mDialog = new Dialog(mContext);
+                final Dialog mDialog = new Dialog(mContext,R.style.DialogTheme);
                 mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 mDialog.setContentView(R.layout.dialog_delete);

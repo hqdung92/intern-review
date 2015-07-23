@@ -80,14 +80,14 @@
             android:background="@color/view.background" />
 
         <EditText
-            android:id="@+id/edtInfor"
+            android:id="@+id/edtDecription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#00ffffff"
             android:gravity="top"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
-            android:text="Infor"
+            android:text="Decription"
             android:textColor="@color/textview.textcolor.fragment" />
     </RelativeLayout>
 
