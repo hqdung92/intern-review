@@ -1,8 +1,11 @@
 package intership.dev.contact;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +20,6 @@ import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<Contacts> {
 
-    public interface OnClickContacts {
-        void onClickEdit(int position);
-    }
-
-    OnClickContacts mOnClickContacts;
     Context mContext;
     ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
 
@@ -81,9 +79,12 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mOnClickContacts != null) {
-                    mOnClickContacts.onClickEdit(position);
-                }
+                FragmentManager mFragmentManager = ((Activity) mContext).getFragmentManager();
+                FragmentTransaction FragmentTransaction = mFragmentManager.beginTransaction();
+                ContactFragment mEditContactFragment = new ContactFragment();
+                FragmentTransaction.replace(R.id.rlContactFragment, mEditContactFragment);
+                FragmentTransaction.addToBackStack(null);
+                FragmentTransaction.commit();
             }
         });
 
@@ -92,6 +93,7 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
             public void onClick(View view) {
                 final Dialog mDialog = new Dialog(mContext);
                 mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 mDialog.setContentView(R.layout.dialog_delete);
 
                 TextView tvMessage = (TextView) mDialog.findViewById(R.id.tvMessage);
@@ -119,10 +121,6 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         });
 
         return convertView;
-    }
-
-    public void setOnClickContacts(OnClickContacts onClickContacts) {
-        mOnClickContacts = onClickContacts;
     }
 
     static class ViewHolder {

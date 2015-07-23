@@ -1,16 +1,15 @@
 package intership.dev.contact;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends FragmentActivity implements ContactsAdapter.OnClickContacts {
+public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
@@ -53,7 +52,6 @@ public class MainActivity extends FragmentActivity implements ContactsAdapter.On
                         && (mList.getLastVisiblePosition() - mList.getHeaderViewsCount() -
                         mList.getFooterViewsCount()) >= (mContactsAdapter.getCount() - 1)) {
                     new LoadDataTask().execute();
-                    ;
                     mContactsAdapter.notifyDataSetChanged();
                 }
             }
@@ -65,26 +63,12 @@ public class MainActivity extends FragmentActivity implements ContactsAdapter.On
     }
 
     private void getDataContacts() {
-        for (int i = 0; i < name.length; i++) {
+        for (int i = 0; i < 10; i++) {
             Contacts contact = new Contacts(name[i], avata[i]);
             contact.setmName(name[i]);
             contact.setmAvata(avata[i]);
             mArrayList.add(contact);
         }
-    }
-
-    @Override
-    public void onClickEdit(int position) {
-
-        ContactFragment contactFragment = new ContactFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(ContactFragment.EXTRA_CONTACT, mArrayList.get(position));
-        contactFragment.setArguments(bundle);
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.rlContactFragment, contactFragment);
-        fragmentTransaction.addToBackStack("ContactFragment");
-        fragmentTransaction.commit();
     }
 
     private class LoadDataTask extends AsyncTask<Void, Void, ArrayList<Contacts>> {
@@ -95,7 +79,6 @@ public class MainActivity extends FragmentActivity implements ContactsAdapter.On
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
-            getDataContacts();
             return null;
         }
 
