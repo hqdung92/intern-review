@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,9 +80,14 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ContactFragment mEditContactFragment = new ContactFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(ContactFragment.EXTRA_CONTACT, mArrayList.get(position));
+                mEditContactFragment.setArguments(bundle);
+
                 FragmentManager mFragmentManager = ((Activity) mContext).getFragmentManager();
                 FragmentTransaction FragmentTransaction = mFragmentManager.beginTransaction();
-                ContactFragment mEditContactFragment = new ContactFragment();
                 FragmentTransaction.replace(R.id.rlContactFragment, mEditContactFragment);
                 FragmentTransaction.addToBackStack(null);
                 FragmentTransaction.commit();
