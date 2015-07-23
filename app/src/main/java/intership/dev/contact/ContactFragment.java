@@ -22,6 +22,9 @@ public class ContactFragment extends Fragment {
     public final static String EXTRA_CONTACT = "mContact";
     private Contacts mContact;
     private int position;
+    private ImageView imgAvata;
+    private TextView tvName, tvSave, tvCancel;
+    private EditText edtName, edtDecription;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -29,12 +32,12 @@ public class ContactFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_contact, container, false);
         mContact = (Contacts) getArguments().getSerializable(ContactFragment.EXTRA_CONTACT);
 
-        ImageView imgAvata = (ImageView) v.findViewById(R.id.imgAvata);
-        final TextView tvName = (TextView) v.findViewById(R.id.tvName);
-        final EditText edtName = (EditText) v.findViewById(R.id.edtName);
-        final EditText edtDecription = (EditText) v.findViewById(R.id.edtDecription);
-        TextView tvSave = (TextView) v.findViewById(R.id.tvSave);
-        TextView tvCancel = (TextView) v.findViewById(R.id.tvCancel);
+        imgAvata = (ImageView) v.findViewById(R.id.imgAvata);
+        tvName = (TextView) v.findViewById(R.id.tvName);
+        edtName = (EditText) v.findViewById(R.id.edtName);
+        edtDecription = (EditText) v.findViewById(R.id.edtDecription);
+        tvSave = (TextView) v.findViewById(R.id.tvSave);
+        tvCancel = (TextView) v.findViewById(R.id.tvCancel);
 
         imgAvata.setImageResource(mContact.getmAvata());
         tvName.setText(mContact.getmName());

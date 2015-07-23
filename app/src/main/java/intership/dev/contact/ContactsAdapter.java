@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ContactsAdapter extends ArrayAdapter<Contacts> {
 
-    Context mContext;
-    ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
+    private Context mContext;
+    private ArrayList<Contacts> mArrayList = new ArrayList<Contacts>();
 
     public ContactsAdapter(Context context, int resource, List<Contacts> objects) {
         super(context, resource, objects);
