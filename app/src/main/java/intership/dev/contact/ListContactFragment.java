@@ -1,8 +1,10 @@
 package intership.dev.contact;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,19 +42,45 @@ public class ListContactFragment extends Fragment {
     };
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_contact, container, false);
-        for (int i = 0; i < name.length; i++) {
-            Contacts item = new Contacts(name[i], decription[i], avata[i]);
-            mArrayList.add(item);
-        }
 
+        if (mArrayList.size() == 0) {
+            addData();
+        }
         mLoadMoreListView = (LoadMoreListView) v.findViewById(R.id.lvContact);
 
         mContactsAdapter = new ContactsAdapter(getActivity(), R.layout.item_list_contacts, mArrayList);
 
         mLoadMoreListView.setAdapter(mContactsAdapter);
+
+        mContactsAdapter.setOnEditClick(new ContactsAdapter.onEditClick() {
+            @Override
+            public void onClick(View v, final int pos) {
+
+                FragmentManager mFragmentManager = getFragmentManager();
+                FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+                ContactDetailFragment mContactDetailFragment = new ContactDetailFragment(mArrayList.get(pos));
+                mFragmentTransaction.replace(R.id.rlDetailFragment, mContactDetailFragment);
+                mFragmentTransaction.addToBackStack("edit");
+                mFragmentTransaction.commit();
+
+                mContactDetailFragment.setOnClickSave(new ContactDetailFragment.onClickSave() {
+                    @Override
+                    public void onClick(Contacts contact) {
+                        mArrayList.get(pos).setmName(contact.getmName());
+                        mArrayList.get(pos).setmDecription(contact.getmDecription());
+                        mContactsAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
 
         mLoadMoreListView.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
             @Override
@@ -61,6 +89,22 @@ public class ListContactFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    public void addData() {
+        for (int i = 0; i < name.length; i++) {
+            Contacts item = new Contacts();
+            item.setmAvata(avata[i]);
+            item.setmName(name[i]);
+            item.setmDecription(decription[i]);
+            mArrayList.add(item);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        Log.d("xx", "LOG");
+        super.onResume();
     }
 
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
@@ -73,10 +117,7 @@ public class ListContactFragment extends Fragment {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
-            for (int i = 0; i < name.length; i++) {
-                Contacts item = new Contacts(name[i], decription[i], avata[i]);
-                mArrayList.add(item);
-            }
+            addData();
             return null;
         }
 

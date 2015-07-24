@@ -1,9 +1,9 @@
 package intership.dev.contact;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Intent;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,18 +19,29 @@ import android.widget.TextView;
  * Created by ubuntu on 22/07/2015.
  */
 public class ContactDetailFragment extends Fragment {
-    public final static String EXTRA_CONTACT = "mContact";
     private Contacts mContact;
-    private int position;
     private ImageView imgAvata;
     private TextView tvName, tvSave, tvCancel;
     private EditText edtName, edtDecription;
+
+    public interface onClickSave {
+        void onClick(Contacts contact);
+    }
+
+    public onClickSave mClickSave;
+
+    public void setOnClickSave(onClickSave clicksave) {
+        this.mClickSave = clicksave;
+    }
+
+    public ContactDetailFragment(Contacts contacts) {
+        mContact = contacts;
+    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_detail_contact, container, false);
-        mContact = (Contacts) getArguments().getSerializable(ContactDetailFragment.EXTRA_CONTACT);
 
         imgAvata = (ImageView) v.findViewById(R.id.imgAvata);
         tvName = (TextView) v.findViewById(R.id.tvName);
@@ -60,16 +71,15 @@ public class ContactDetailFragment extends Fragment {
                 tvOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), ListContactFragment.class);
-                        Bundle bundle = new Bundle();
-                        position = bundle.getInt("position");
-                        mContact.setmName(edtName.getText().toString());
-                        mContact.setmDecription(edtDecription.getText().toString());
-                        intent.putExtra("position", position);
-                        intent.putExtra("mContact", mContact);
-                        getActivity().setResult(Activity.RESULT_OK, intent);
-                        mDialog.cancel();
-                        getActivity().onBackPressed();
+                        if (mClickSave != null) {
+                            Contacts contact = new Contacts();
+                            contact.setmName(edtName.getText().toString());
+                            contact.setmDecription(edtDecription.getText().toString());
+                            mClickSave.onClick(contact);
+                            addFragment();
+                            mDialog.cancel();
+                            getActivity().onBackPressed();
+                        }
                     }
                 });
                 tvCancel.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +94,18 @@ public class ContactDetailFragment extends Fragment {
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edtName.setText(mContact.getmName());
-                edtDecription.setText(mContact.getmDecription());
+                addFragment();
+                getActivity().onBackPressed();
             }
         });
         return v;
+    }
+    private void addFragment(){
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        ListContactFragment listContactFragment = new ListContactFragment();
+        transaction.replace(R.id.rlListFragment, listContactFragment);
+        transaction.addToBackStack("main");
+        transaction.commit();
     }
 }

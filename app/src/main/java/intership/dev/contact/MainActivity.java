@@ -1,22 +1,23 @@
 package intership.dev.contact;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager mFragmentManager = getSupportFragmentManager();
+        FragmentManager mFragmentManager = getFragmentManager();
         ListContactFragment mListContactFragment = new ListContactFragment();
         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentTransaction.replace(R.id.rlListFragment, mListContactFragment);
+        mFragmentTransaction.addToBackStack("main");
         mFragmentTransaction.commit();
     }
 }

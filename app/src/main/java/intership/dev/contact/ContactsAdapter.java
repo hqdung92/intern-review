@@ -32,6 +32,21 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         this.mArrayList = new ArrayList<Contacts>(objects);
     }
 
+    public interface onEditClick {
+        void onClick(View v, int pos);
+    }
+
+    public onEditClick mEditClick;
+
+    /**
+     * Set event for mEditClick
+     *
+     * @param editClick: event from click
+     */
+    public void setOnEditClick(onEditClick editClick) {
+        this.mEditClick = editClick;
+    }
+
     @Override
     public int getCount() {
         return mArrayList.size();
@@ -79,23 +94,16 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContactDetailFragment mContactDetailFragment = new ContactDetailFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(ContactDetailFragment.EXTRA_CONTACT, mArrayList.get(position));
-                mContactDetailFragment.setArguments(bundle);
-
-                FragmentManager mFragmentManager = ((Activity) mContext).getFragmentManager();
-                FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-                mFragmentTransaction.replace(R.id.rlDetailFragment, mContactDetailFragment);
-                mFragmentTransaction.addToBackStack(null);
-                mFragmentTransaction.commit();
+                if (mEditClick != null) {
+                    mEditClick.onClick(view, position);
+                }
             }
         });
 
         mViewHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog mDialog = new Dialog(mContext,R.style.DialogTheme);
+                final Dialog mDialog = new Dialog(mContext, R.style.DialogTheme);
                 mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 mDialog.setContentView(R.layout.dialog_delete);
