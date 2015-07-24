@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +50,18 @@ public class ListContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_contact, container, false);
 
-        if (mArrayList.size() == 0) {
-            addData();
-        }
+        addData();
+        init(v);
+        mLoadMoreListView.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                new LoadDataTask().execute();
+            }
+        });
+        return v;
+    }
+
+    public void init(View v) {
         mLoadMoreListView = (LoadMoreListView) v.findViewById(R.id.lvContact);
 
         mContactsAdapter = new ContactsAdapter(getActivity(), R.layout.item_list_contacts, mArrayList);
@@ -81,14 +89,6 @@ public class ListContactFragment extends Fragment {
                 });
             }
         });
-
-        mLoadMoreListView.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                new LoadDataTask().execute();
-            }
-        });
-        return v;
     }
 
     public void addData() {
@@ -101,12 +101,6 @@ public class ListContactFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        Log.d("xx", "LOG");
-        super.onResume();
-    }
-
     private class LoadDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
@@ -117,15 +111,20 @@ public class ListContactFragment extends Fragment {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
-            addData();
+            for (int i = 0; i < name.length; i++) {
+                Contacts item = new Contacts();
+                item.setmAvata(avata[i]);
+                item.setmName(name[i]);
+                item.setmDecription(decription[i]);
+                mArrayList.add(item);
+            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-            mLoadMoreListView.onLoadMoreComplete();
             mContactsAdapter.notifyDataSetChanged();
-            Log.d("xxx", "onLoadMore");
+            mLoadMoreListView.onLoadMoreComplete();
             super.onPostExecute(result);
         }
 
