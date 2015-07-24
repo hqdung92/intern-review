@@ -2,10 +2,10 @@ package intership.dev.contact;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 /**
  * Created by ubuntu on 22/07/2015.
  */
-public class ContactFragment extends Fragment {
+public class ContactDetailFragment extends Fragment {
     public final static String EXTRA_CONTACT = "mContact";
     private Contacts mContact;
     private int position;
@@ -29,8 +29,8 @@ public class ContactFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_contact, container, false);
-        mContact = (Contacts) getArguments().getSerializable(ContactFragment.EXTRA_CONTACT);
+        View v = inflater.inflate(R.layout.fragment_detail_contact, container, false);
+        mContact = (Contacts) getArguments().getSerializable(ContactDetailFragment.EXTRA_CONTACT);
 
         imgAvata = (ImageView) v.findViewById(R.id.imgAvata);
         tvName = (TextView) v.findViewById(R.id.tvName);
@@ -60,7 +60,7 @@ public class ContactFragment extends Fragment {
                 tvOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        Intent intent = new Intent(getActivity(), ListContactFragment.class);
                         Bundle bundle = new Bundle();
                         position = bundle.getInt("position");
                         mContact.setmName(edtName.getText().toString());

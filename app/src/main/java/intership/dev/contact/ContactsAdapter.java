@@ -79,15 +79,14 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
         mViewHolder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ContactFragment mContactFragment = new ContactFragment();
+                ContactDetailFragment mContactDetailFragment = new ContactDetailFragment();
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(ContactFragment.EXTRA_CONTACT, mArrayList.get(position));
-                mContactFragment.setArguments(bundle);
+                bundle.putSerializable(ContactDetailFragment.EXTRA_CONTACT, mArrayList.get(position));
+                mContactDetailFragment.setArguments(bundle);
 
                 FragmentManager mFragmentManager = ((Activity) mContext).getFragmentManager();
                 FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-                mFragmentTransaction.replace(R.id.rlContactFragment, mContactFragment);
+                mFragmentTransaction.replace(R.id.rlDetailFragment, mContactDetailFragment);
                 mFragmentTransaction.addToBackStack(null);
                 mFragmentTransaction.commit();
             }
