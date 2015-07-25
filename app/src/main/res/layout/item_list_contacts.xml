@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="@dimen/item.layout_height.item_contact"
     android:background="@color/layout.background.item_list_contacts"
     android:descendantFocusability="blocksDescendants">
 
@@ -23,13 +23,13 @@
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/imgAvata"
         android:text="aaaaaaaaaaa"
-        android:textSize="15sp" />
+        android:textSize="@dimen/textview.text.name" />
 
         <ImageView
             android:id="@+id/imgEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="@dimen/imageview.item_list_contact.layout_margin.imgEdit"
             android:layout_centerVertical="true"
             android:layout_alignRight="@+id/imgDelete"
             android:background="@drawable/ic_edit" />
@@ -37,7 +37,7 @@
             android:id="@+id/imgDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="@dimen/imageview.item_list_contact.layout_margin.imgDelete"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_delete" />

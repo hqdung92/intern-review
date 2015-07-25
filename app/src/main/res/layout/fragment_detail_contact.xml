@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/rlAvata"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/detail.layout_height.avata"
         android:layout_below="@+id/rlContact">
 
         <intership.dev.contact.widget.CircleImageView

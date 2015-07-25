@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/imageview.fragment_list_contact.layout_margin"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_centerInParent="true"
             android:text="@string/textview.text.contacts"
             android:textColor="@color/textview.textcolor"
-            android:textSize="@dimen/textview.textsize.contacts" />
+            android:textSize="@dimen/textview.text.contacts" />
     </RelativeLayout>
 
     <RelativeLayout

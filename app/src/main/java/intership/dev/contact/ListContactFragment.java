@@ -111,13 +111,7 @@ public class ListContactFragment extends Fragment {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
-            for (int i = 0; i < name.length; i++) {
-                Contacts item = new Contacts();
-                item.setmAvata(avata[i]);
-                item.setmName(name[i]);
-                item.setmDecription(decription[i]);
-                mArrayList.add(item);
-            }
+            addData();
             return null;
         }
 
